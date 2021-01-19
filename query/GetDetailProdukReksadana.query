@@ -1,0 +1,16 @@
+select 
+        t.id_produk,
+        t.nama_produk,
+        d.nab_daily,
+        t.expense_ratio,
+        t.TOTAL_AUM,
+        t.manager_investasi,
+        t.tingkat_resiko,
+        t.minimum_unit,
+        t.bank_kustodian,
+        t.bank_penampung,
+        to_char(d.date_daily,'dd-mm-yyyy'),
+        to_char(d.date_daily,'dd Mon yy')                
+from T_Produk_reksadana t join T_DAILY_NAB d on t.id_produk = d.id_produk
+        where trunc(d.date_daily) = (select trunc(max(date_daily)) from T_DAILY_NAB where trunc(date_daily) <= to_date('%s','dd-mm-yyyy'))                
+		and t.id_produk = '%s'
