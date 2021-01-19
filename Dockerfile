@@ -1,4 +1,4 @@
-FROM docker-reg.dti.co.id:5000/project-bit1415/golang:rc-buster as builder
+FROM golang:1.12-alpine as builder
 WORKDIR /golang
 COPY virtual_trade_api ./
 COPY properties ./properties
